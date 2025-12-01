@@ -16,9 +16,13 @@ func main(){
 	//parse the flags
 	flag.Parse()
 	//use the value
-	if *addFlag {
+	
+	if flag.Lookup("add-task").Value.String()!="new task"  {
 		fmt.Printf("you added : %s \n",*addFlag)
-	}
-	fmt.Printf("Hello,%s!\n",*nameFlag)
 
+	}else if flag.Lookup("name").Value.String()!="World"{
+	fmt.Printf("Hello,%s!\n",*nameFlag)
+	}else{
+	fmt.Printf("Hello,%s!\n",*nameFlag)
+	}
 }
