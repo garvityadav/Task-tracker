@@ -5,37 +5,38 @@ import( "fmt"
 
 
 func main(){
-	fmt.Println("this is task tracker")
 	//define a flag
-	nameFlag:= flag.String("name","World","Your name")
-
-	addFlag := flag.String("add-task","new task","Add your task name")
-	 descriptionFlag := flag.String("description","description","add description")
-	setTimeFlag := flag.String("set-time","1****","set time in cron expression")
-	listFlag := flag.String("list","list all jobs")
-	listRunningFlag := flag.String("running","list all running jobs")
-
-
+	versionFlag := flag.Bool("version",false,"show version")	
+	versionFlagShort := flag.Bool("v",false,"show version (short)")
+	addTaskName := flag.String("add-task","","Name of the task")
+	addDuration := flag.String("duration","","duration of the task in hh:mm:ss")
 	//parse the flags
 	flag.Parse()
-	
-	//use the value
-	
-	if flag.Lookup("add-task").Value.String()!="new task"  {
-		fmt.Printf("you added : %s \n",*addFlag)
-
-	}
-	if flag.Lookup("name").Value.String()!="World"{
-	fmt.Printf("Hello,%s!\n",*nameFlag)
+	if *versionFlag==true || *versionFlagShort==true{
+		checkVersion()
 	}
 	
-	if flag.Lookup("description").Value.String()!="description"{
-		fmt.Printf("Discription : ,%s!\n",*descriptionFlag)
+	if flag.Lookup("add-task").Value.String()!=""{
+		if flag.Lookup("duration").Value.String()!=""{
+			addTask(*addTaskName,*addDuration)
+		}else{
+			addTask(*addTaskName,"00:10:00")
+		}
 	}
-
-
 }
 
-// create 
-func addTask()
+// check health 
+func checkHealth(){
+	}
 
+//check version
+func checkVersion(){
+// command : tasker --version
+	// this command should print the current version of the application. 
+	// --version flag is used or in short -v.
+	fmt.Printf("Tasker\nversion: v0.0.1\n")	
+}
+// create a task
+func addTask(taskName ,time string){
+	fmt.Printf(taskName+" & "+time+"\n")
+}
