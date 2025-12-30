@@ -1,7 +1,9 @@
 package main
 
 import( "fmt"
-	"flag")
+	"flag"
+	"Task"
+)
 
 
 func main(){
@@ -10,17 +12,23 @@ func main(){
 	versionFlagShort := flag.Bool("v",false,"show version (short)")
 	addTaskName := flag.String("add-task","","Name of the task")
 	addDuration := flag.String("duration","","duration of the task in hh:mm:ss")
+	helpFlag := flag.Bool("help",false,"show help")
+	helpFlagShort := flag.bool("h",false,"show help(short)")
 	//parse the flags
 	flag.Parse()
+
+	if *helpFlagShort == true || *versionFlag==true{
+		showHelp()
+	}
 	if *versionFlag==true || *versionFlagShort==true{
 		checkVersion()
 	}
 	
 	if flag.Lookup("add-task").Value.String()!=""{
 		if flag.Lookup("duration").Value.String()!=""{
-			addTask(*addTaskName,*addDuration)
+			Task.AddTask(*addTaskName,*addDuration)
 		}else{
-			addTask(*addTaskName,"00:10:00")
+			Task.AddTask(*addTaskName,"00:10:00")
 		}
 	}
 }
@@ -36,7 +44,5 @@ func checkVersion(){
 	// --version flag is used or in short -v.
 	fmt.Printf("Tasker\nversion: v0.0.1\n")	
 }
-// create a task
-func addTask(taskName ,time string){
-	fmt.Printf(taskName+" & "+time+"\n")
-}
+
+

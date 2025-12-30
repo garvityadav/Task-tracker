@@ -40,30 +40,14 @@ GOLang
 Some details about CLI apps 
 
 - Command : 
-> $ tasker pomo start
-> $ tasker todo list 
-> $ tasker timer add
-    
+$ tasker pomo start
+$ tasker todo list 
+$ tasker timer add
+
+   
     So these are the commands where “tasker is the main command and “pomo” , “todo” and “timer” are sub-commands and “start” , “list” and “add” are sub-subcommands or flags. 
-    
-     
-    
+----
 
----
 
-Things I have learned while developing my personal projects.
-
-- Difference between .profile and .bashrc
-    - “.profile” in linux is used to store commands which will be executed on shell login
-    - “.bashrc” file in linux is run every time a new terminal is started.
-- Difference between /etc/profile and ~/.profile
-    - /etc/profile is used for system-wide commands
-    - ~/.profile is used for user-specific commands.
-    
-- Types of errors
-    
-    Two types of erros : 
-    
-    - compiler error : Better to get compiler error in golang as no executable file is generated if there is compiler error.
-    - Runtime Error : worse as the program catch error while running.
-    -
+Functions : 
+To create a task : addTask()
