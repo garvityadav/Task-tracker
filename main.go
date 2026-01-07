@@ -2,47 +2,48 @@ package main
 
 import( "fmt"
 	"flag"
-	"Task"
+	"github.com/garvityadav/Task-tracker/controller"
 )
 
 
 func main(){
 	//define a flag
-	versionFlag := flag.Bool("version",false,"show version")	
-	versionFlagShort := flag.Bool("v",false,"show version (short)")
-	addTaskName := flag.String("add-task","","Name of the task")
-	addDuration := flag.String("duration","","duration of the task in hh:mm:ss")
-	helpFlag := flag.Bool("help",false,"show help")
-	helpFlagShort := flag.bool("h",false,"show help(short)")
+	
+	//version Flag
+	var version bool
+	flag.Bool(&version,"version",false,"show version")	
+	flag.Bool(&version,"v",false,"show version (short)")
+
+	//Task flag
+	var addTaskName string
+	flag.String(&addTaskName,"add-task","","Name of the task")
+	var addDuration string
+	flag.String(&addDuration,"duration","","duration of the task in hh:mm:ss")
+	var helpFlag bool
+	flag.Bool(*helpFlag,"help",false,"show help")
+	flag.bool(*helpFlag,"h",false,"show help(short)")
+	
 	//parse the flags
 	flag.Parse()
 
-	if *helpFlagShort == true || *versionFlag==true{
-		showHelp()
+	if  helpFlag== true{
+		controller.ShowHelp()
+		return
 	}
-	if *versionFlag==true || *versionFlagShort==true{
-		checkVersion()
+	if version==true {
+		controller.CheckVersion()
+		return 
 	}
 	
-	if flag.Lookup("add-task").Value.String()!=""{
-		if flag.Lookup("duration").Value.String()!=""{
-			Task.AddTask(*addTaskName,*addDuration)
+	if *addTaskName!=""{
+		if *addDuration!=""{
+			tasks.AddTask(*addTaskName,*addDuration)
 		}else{
-			Task.AddTask(*addTaskName,"00:10:00")
+			tasks.AddTask(*addTaskName,"00:10:00")
 		}
-	}
-}
-
-// check health 
-func checkHealth(){
+		return
 	}
 
-//check version
-func checkVersion(){
-// command : tasker --version
-	// this command should print the current version of the application. 
-	// --version flag is used or in short -v.
-	fmt.Printf("Tasker\nversion: v0.0.1\n")	
 }
 
 

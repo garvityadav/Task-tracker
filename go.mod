@@ -1,5 +1,4 @@
-module example/hello
-
+module github.com/garviyadav/Task-tracker
 go 1.24.1
 
 require rsc.io/quote v1.5.2
