@@ -1,6 +1,6 @@
 package main
 
-import( "fmt"
+import(
 	"flag"
 	"github.com/garvityadav/Task-tracker/controller"
 )
@@ -11,17 +11,17 @@ func main(){
 	
 	//version Flag
 	var version bool
-	flag.Bool(&version,"version",false,"show version")	
-	flag.Bool(&version,"v",false,"show version (short)")
+	flag.BoolVar(&version,"version",false,"show version")	
+	flag.BoolVar(&version,"v",false,"show version (short)")
 
 	//Task flag
 	var addTaskName string
-	flag.String(&addTaskName,"add-task","","Name of the task")
+	flag.StringVar(&addTaskName,"add-task","","Name of the task")
 	var addDuration string
-	flag.String(&addDuration,"duration","","duration of the task in hh:mm:ss")
+	flag.StringVar(&addDuration,"duration","","duration of the task in hh:mm:ss")
 	var helpFlag bool
-	flag.Bool(*helpFlag,"help",false,"show help")
-	flag.bool(*helpFlag,"h",false,"show help(short)")
+	flag.BoolVar(&helpFlag,"help",false,"show help")
+	flag.BoolVar(&helpFlag,"h",false,"show help(short)")
 	
 	//parse the flags
 	flag.Parse()
@@ -35,11 +35,11 @@ func main(){
 		return 
 	}
 	
-	if *addTaskName!=""{
-		if *addDuration!=""{
-			tasks.AddTask(*addTaskName,*addDuration)
+	if addTaskName!=""{
+		if addDuration!=""{
+			controller.AddTask(addTaskName,addDuration)
 		}else{
-			tasks.AddTask(*addTaskName,"00:10:00")
+			controller.AddTask(addTaskName,"00:10:00")
 		}
 		return
 	}

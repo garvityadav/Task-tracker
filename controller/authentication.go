@@ -1,5 +1,6 @@
+package controller
 import "fmt"
 
 func auth(){
-	fmt.println("authentication done.")
+	fmt.Println("authentication done.")
 }

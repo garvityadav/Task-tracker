@@ -1,8 +1,10 @@
 package controller
+
 import "fmt"
 
 // check health 
-func CheckHealth()error{
+func ShowHelp()error{
+	fmt.Println("This is help section======")
 	return nil
 	}
 
